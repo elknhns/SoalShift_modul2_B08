@@ -1,4 +1,5 @@
 # SoalShift_modul2_B08
+
 1. Elen mempunyai pekerjaan pada studio sebagai fotografer. Suatu hari ada seorang klien yang bernama Kusuma yang meminta untuk mengubah nama file yang memiliki ekstensi .png menjadi “[namafile]_grey.png”. Karena jumlah file yang diberikan Kusuma tidak manusiawi, maka Elen meminta bantuan kalian untuk membuat suatu program C yang dapat mengubah nama secara otomatis dan diletakkan pada direktori /home/[user]/modul2/gambar.
    - Catatan : Tidak boleh menggunakan crontab.
 *Observasi*
@@ -148,7 +149,7 @@ Buatlah program C yang dapat :
    Disini kami menggunakan *twopipes.c* dimana kita bisa menggunakan dua *pipes* sekaligus yang kami butuhkan untuk ``` char *argv[] = {"grep", ".txt$", NULL}; ``` dan untuk membuka file ```  FILE *file = fopen("/home/schielen/modul2/daftar.txt", "w+"); ```
 
 **Referensi**
-1. http://www.cs.loyola.edu/~jglenn/702/S2005/Examples/dup2.html
+   - http://www.cs.loyola.edu/~jglenn/702/S2005/Examples/dup2.html
 
 4. Dalam direktori /home/[user]/Documents/makanan terdapat file makan_enak.txt yang berisikan daftar makanan terkenal di Surabaya. Elen sedang melakukan diet dan seringkali tergiur untuk membaca isi makan_enak.txt karena ngidam makanan enak. Sebagai teman yang baik, Anda membantu Elen dengan membuat program C yang berjalan setiap 5 detik untuk memeriksa apakah file makan_enak.txt pernah dibuka setidaknya 30 detik yang lalu (rentang 0 - 30 detik).
 Jika file itu pernah dibuka, program Anda akan membuat 1 file makan_sehat#.txt di direktori /home/[user]/Documents/makanan dengan '#' berisi bilangan bulat dari 1 sampai tak hingga untuk mengingatkan Elen agar berdiet.
@@ -241,3 +242,5 @@ while(1) {
     exit(EXIT_SUCCESS);
 }
 ```
+
+Sekian laporan dari kami dan Terimakasih.
