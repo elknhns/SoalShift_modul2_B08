@@ -3,14 +3,52 @@
    - Catatan : Tidak boleh menggunakan crontab.
 2. Pada suatu hari Kusuma dicampakkan oleh Elen karena Elen dimenangkan oleh orang lain. Semua kenangan tentang Elen berada pada file bernama “elen.ku” pada direktori “hatiku”. Karena sedih berkepanjangan, tugas kalian sebagai teman Kusuma adalah membantunya untuk menghapus semua kenangan tentang Elen dengan membuat program C yang bisa mendeteksi owner dan group dan menghapus file “elen.ku” setiap 3 detik dengan syarat ketika owner dan grupnya menjadi “www-data”. Ternyata kamu memiliki kendala karena permission pada file “elen.ku”. Jadi, ubahlah permissionnya menjadi 777. Setelah kenangan tentang Elen terhapus, maka Kusuma bisa move on.
    - Catatan: Tidak boleh menggunakan crontab
-*Penjelasan*
+
+**Jawaban**
 - Buat folder "hatiku", lalu buat file "elen.ku"
   ```
   mkdir hatiku
   cd hatiku
   touch elen.ku
   ```
-- Kemudian buat file soal2.c menggunakan ```nano soal2.c``` dengan isinya seperti yang ada dalam.
+- Kemudian buat file soal2.c menggunakan ```nano soal2.c``` dengan isinya seperti yang ada dalam [file ini](https://github.com/elknhns/SoalShift_modul2_B08/tree/master/soal2).
+  
+  **Penjelasan**
+  - Dapatkan owner dan grup dari "elen.ku"
+    ```
+    struct stat st;
+    char folder[20] = "hatiku/elen.ku";
+    stat(folder, &st);
+    struct passwd *pw = getpwuid(st.st_uid);
+    struct group *gr = getgrgid(st.st_gid);
+    ```
+  - Pastikan owner dan grupnya adalah "www-data", baru filenya dihapus
+    ```
+    char nama[10] = "www-data";
+    int usr = strcmp(pw->pw_name, nama);
+    int grp = strcmp(gr->gr_name, nama);
+    if(usr == 0 && grp == 0)
+      remove(folder);
+    ```
+  - Lakukan setiap 3 detik
+    ```
+    sleep(3);
+    ```
+- Ubah permission file "elen.ku" menjadi 777
+  ```
+  chmod 777 elen.ku
+  ```
+- Lalu atur nama owner dan grup pada file "elen.ku" menjadi "www-data"
+  ```
+  sudo chown www-data:www-data elen.ku
+  ```
+- Compile file "soal2.c" lalu execute
+  ```
+  gcc -o soal2 soal2.c
+  ./soal2
+  ```
+- File "elen.ku" terhapus
+
 3. Diberikan file campur2.zip. Di dalam file tersebut terdapat folder “campur2”. 
 Buatlah program C yang dapat :
    1. mengekstrak file zip tersebut.
